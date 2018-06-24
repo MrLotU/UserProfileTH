@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}{%if user.userprofile.first %}{{ user.userprofile.first }}{% else %}Profile{% endif %} | {{ super }}{% endblock %}
+
+{% block body %}
+    <div class="grid-25">
+        nav here maybe?
+    </div>
+    <div class="grid-75">
+        <div>
+            <h1>Profile</h1>
+            <br>
+            <table>
+                <thead>
+                    <h2>Account details</h2>
+                    <tr>
+                        <td>Username</td>
+                        <td>First name</td>
+                        <td>Last name</td>
+                        <td>Email</td>
+                        <td>Birthday</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ user.username }}</td>
+                        {% with user.userprofile as profile %}
+                        <td>{{ profile.first }}</td>
+                        <td>{{ profile.last }}</td>
+                        <td>{{ profile.email }}</td>
+                        <td>{{ profile.birthday }}</td>
+                        {% endwith %}
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <h2>Bio</h2>
+            {% if user.userprofile.bio %}
+            {{ user.userprofile.bio }}
+            {% else %}
+            <p>No bio</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
