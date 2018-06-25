@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}{%if user.userprofile.first %}{{ user.userprofile.first }}{% else %}Profile{% endif %} | {{ block.super }}{% endblock %}
+
+{% block body %}
+    {{ block.super }}
+    <div class="grid-75">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h1>Account data</h1>
+            {{ user_form.as_p }}
+            <h1>Profile data</h1>        
+            {{ profile_form.as_p }}
+            <button type="submit">Submit</button>
+            <button type="cancel"><a href="{% url 'accounts:profile' %}"> Cancel </a></button>
+        </form>
+    </div>
+{% endblock %}

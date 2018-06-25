@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% block title %}Sign Up | {{ super }}{% endblock %}
+{% block title %}Sign Up | {{ block.super }}{% endblock %}
 
 {% block body %}
 <form method="POST" action="{% url 'accounts:sign_up' %}">

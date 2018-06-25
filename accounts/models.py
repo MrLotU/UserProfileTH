@@ -6,10 +6,9 @@ from django.dispatch import receiver
 class UserProfile(models.Model):
     first = models.CharField(max_length=255, default='None')
     last = models.CharField(max_length=255, default='None')
-    email = models.EmailField(default='None')
     birthday = models.DateField(null=True, blank=True)
     bio = models.TextField(blank=True)
-    pfp = models.ImageField(null=True, blank=True)
+    pfp = models.ImageField(upload_to='local_profile_pictures/', null=True, blank=True)
     user = models.OneToOneField(User, models.CASCADE)
 
 @receiver(post_save, sender=User)

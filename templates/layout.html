@@ -42,14 +42,6 @@
                                                       href="{% url 'home' %}">Circle</a>
                 </h1>
             </div>
-            <div class="circle--fluid--cell circle--fluid--primary">
-                <nav>
-                    <ul class="circle--inline">
-                        <li><a href="#">nav</a></li>
-                        <li><a href="#">here?</a></li>
-                    </ul>
-                </nav>
-            </div>
             <div class="circle--fluid--cell circle--fluid--secondary">
                 <nav>
                     <ul class="circle--inline">
@@ -77,7 +69,21 @@
             {% endfor %}
         </ul>
     {% endif %}
-    {% block body %}{% endblock %}
+    {% block body %}
+    <div class="grid-25">
+        <ul class="circle--inline">
+            {% if not user.is_authenticated %}
+                <li><a href="{% url 'accounts:sign_up' %}">Sign Up</a></li>
+                <li><a href="{% url 'accounts:sign_in' %}">Sign In</a></li>
+            {% else %}
+                <li><a href="{% url 'accounts:profile' %}">Profile</a></li>
+                <li><a href="{% url 'accounts:edit_profile' %}">Edit profile</a></li>
+                <li><a href="{% url 'accounts:change_password' %}">Change password</a></li>
+                <li><a href="{% url 'accounts:sign_out' %}">Sign Out</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    {% endblock %}
 </div>
 </body>
 </html>
